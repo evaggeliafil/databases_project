@@ -503,6 +503,35 @@ create view food_groups_used as
     on (cl.ingredients_id=iu.ingredients_id) 
     order by food_groups_id;
 
+create view episode_scores as
+select e.season, e.episode_in_season, e.cooks_id, s.total_score, c.cooks_rank
+from episode e
+join score s on e.cooks_id = s.cooks_id and e.season = s.season and e.episode_in_season = s.episode_in_season
+join cooks c on e.cooks_id = c.cooks_id
+order by e.season,e.episode_in_season;
+
+create view tie_breaker as
+select es1.season, es1.episode_in_season, es1.cooks_id as cook_id, es1.total_score, rm.rank_value as cooks_rank
+from episode_scores es1
+join
+    (select season, episode_in_season, max(total_score) as max_score
+     from episode_scores
+     group by season, episode_in_season) es2
+on es1.season = es2.season and es1.episode_in_season = es2.episode_in_season and es1.total_score = es2.max_score
+join rank_mapping rm on es1.cooks_rank=rm.cook_rank
+order by es1.season, es1.episode_in_season;
+       
+create view random_winner as
+select z.cook_id, z.season, z.episode_in_season, rand() as random_value
+from tie_breaker z
+join (
+select season, episode_in_season, max(cooks_rank) as best_rank
+from tie_breaker
+group by season, episode_in_season
+order by season, episode_in_season) as br
+on z.season = br.season and z.episode_in_season = br.episode_in_season and z.cooks_rank = br.best_rank
+order by z.season, z.episode_in_season;
+
 -- --------------------------------------------------------------------------------
 -- Triggers
 
