@@ -59,8 +59,6 @@ order by
 recipes_count desc;
    
 -- 3.4 
-
-
 select cooks.cooks_id,cooks.cooks_name,cooks.cooks_surname
 from cooks
 left join judges
@@ -126,13 +124,38 @@ select c.cooks_id,c.cooks_name,c.cooks_surname
  on (c.cooks_id = cap.cooks_id) 
  order by c.cooks_id; 
 
--- 3.8 half
+-- 3.8
 select y.episode_in_season, y.season, count(dm.recipes_id) as equipment_needed 
  from demands dm 
  join (select recipes_id, episode_in_season, season from episode order by season, episode_in_season, season) as y 
  on (y.recipes_id=dm.recipes_id) 
  group by y.episode_in_season,y.season 
  order by equipment_needed desc limit 1;
+
+-- query plan
+create index idx_demands_recipes_id on demands(recipes_id);
+create index idx_episode_recipes_id on episode(recipes_id);
+
+select e.episode_in_season, e.season, count(d.equipment_id) as equipment_needed
+from episode e force index (idx_episode_recipes_id)
+join demands d force index (idx_demands_recipes_id) on e.recipes_id = d.recipes_id
+group by e.episode_in_season, e.season
+order by equipment_needed desc
+limit 1;
+
+explain select e.episode_in_season, e.season, count(d.equipment_id) as equipment_needed
+from episode e
+join demands d on e.recipes_id = d.recipes_id
+group by e.episode_in_season, e.season
+order by equipment_needed desc
+limit 1;
+
+explain select e.episode_in_season, e.season, count(d.equipment_id) as equipment_needed
+from episode e force index (idx_episode_recipes_id)
+join demands d force index (idx_demands_recipes_id) on e.recipes_id = d.recipes_id
+group by e.episode_in_season, e.season
+order by equipment_needed desc
+limit 1;
 
 -- 3.9
 
@@ -144,6 +167,7 @@ join consists_of co
  on co.recipes_id = e.recipes_id
 group by e.season
 order by e.season;
+
 -- 3.10
 
 select cy.cuisines_id,c.cuisines_name,cy.year1,cy.year2,cy.entries_count1 as entries_count 
