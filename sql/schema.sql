@@ -369,8 +369,18 @@ last_update_role_permissions timestamp not null default current_timestamp on upd
 constraint fk_permissions foreign key (permission_id) references permissions (permission_id) on delete restrict on update cascade
 );
 
-create view cooks_rating as select cooks_id, AVG(total_score) as average_score from score group by cooks_id;
-create view cuisines_rating as select cuisines_id,AVG(total_score) as average_score from score sc join specializes sp on (sp.cooks_id=sc.cooks_id) group by cuisines_id;
+create view cooks_rating as 
+    select cooks_id, AVG(total_score) as average_score 
+    from score 
+    group by cooks_id;
+
+create view cuisines_rating as 
+    select cuisines_id,AVG(total_score) as average_score 
+    from score sc 
+    join specializes sp 
+    on (sp.cooks_id=sc.cooks_id) 
+    group by cuisines_id;
+
 create view judges as
 select distinct
 cooks.cooks_id,cooks.cooks_name,cooks.cooks_surname
@@ -382,18 +392,41 @@ where
 ((cooks.cooks_id=episode.judge1) OR (cooks.cooks_id=episode.judge2) OR (cooks.cooks_id=episode.judge3))
 order by
 cooks.cooks_id;
-create view judges_by_season as select j.cooks_id,ep.season,count(j.cooks_id) as times from judges j join episode ep on  (ep.cooks_id=j.cooks_id)  group by j.cooks_id,ep.season order by j.cooks_id,ep.season;
-create view tag_pairs as select c1.tags_id as tag1,c2.tags_id as tag2,count(*) as pair_count
+
+create view judges_by_season as 
+    select j.cooks_id,ep.season,count(j.cooks_id) as times 
+    from judges j join episode ep on  (ep.cooks_id=j.cooks_id)  
+    group by j.cooks_id,ep.season 
+    order by j.cooks_id,ep.season;
+
+create view tag_pairs as 
+    select c1.tags_id as tag1,c2.tags_id as tag2,count(*) as pair_count
 from categorized_by c1
 join categorized_by c2 on c1.recipes_id=c2.recipes_id and c1.tags_id<c2.tags_id
-join episode e on c1.recipes_id=e.episode_id
+join episode e on c1.recipes_id=e.recipes_id
 group by c1.tags_id, c2.tags_id;
 
-create view appearances as select cooks_id, count(*) as apps from episode group by cooks_id order by apps desc;
-create view low_apps as select cooks_id from appearances where apps < ((select max(apps) from appearances) - 5) group by cooks_id order by cooks_id;  
+create view appearances as 
+    select cooks_id, count(*) as apps 
+    from episode 
+    group by cooks_id 
+    order by apps desc;
 
-create view yearly_entries as select e.cuisines_id,e.season as season, count(*) as entries_count from episode e group by  e.cuisines_id, e.season having count(*)>=3;
-create view consecutive_years as select  y1.cuisines_id,y1.season as year1,y2.season as year2,y1.entries_count as entries_count1,y2.entries_count as entries_count2 from yearly_entries y1 join yearly_entries y2 on  y1.cuisines_id = y2.cuisines_id and y2.season = y1.season + 1;
+create view low_apps as 
+    select cooks_id from appearances 
+    where apps < ((select max(apps) from appearances) - 5) 
+    group by cooks_id order by cooks_id;  
+
+create view yearly_entries as 
+    select e.cuisines_id,e.season as season, count(*) as entries_count 
+    from episode e 
+    group by  e.cuisines_id, e.season 
+    having count(*)>=3;
+create view consecutive_years as 
+    select  y1.cuisines_id,y1.season as year1,y2.season as year2,y1.entries_count as entries_count1,y2.entries_count as entries_count2 
+    from yearly_entries y1 
+    join yearly_entries y2 
+    on  y1.cuisines_id = y2.cuisines_id and y2.season = y1.season + 1;
 
 create view judging as
 select j.cooks_id as judges_id, e.cooks_id as cooks_id, e.episode_id, e.season, episode_in_season as eis, if(j.cooks_id=judge1,1,0) as fsc,if(j.cooks_id=judge2,1,0) as ssc,if(j.cooks_id=judge3,1,0) as tsc
@@ -418,7 +451,12 @@ select  e.season,e.episode_in_season as eis,sum(r.difficulty) as difficulty
     group by  e.season,e.episode_in_season
     order by e.season,e.episode_in_season;
 
-create view rank_mapping as select 'C' as cook_rank, 1 as rank_value union all select 'B' as cook_rank, 2 as rank_value union all select 'A' as cook_rank, 3 as rank_value union all select 'Sous Chef' as cook_rank, 4 as rank_value union all select 'Chef' as cook_rank, 5 as rank_value;
+create view rank_mapping as 
+    select 'C' as cook_rank, 1 as rank_value union all 
+    select 'B' as cook_rank, 2 as rank_value union all 
+    select 'A' as cook_rank, 3 as rank_value union all 
+    select 'Sous Chef' as cook_rank, 4 as rank_value union all 
+    select 'Chef' as cook_rank, 5 as rank_value;
 
 create view episode_rank as 
 select e.episode_id, 
@@ -452,8 +490,18 @@ create view themes_appearances as select gb.themes_id, sum(rm.appearance_counter
     group by gb.themes_id
     order by gb.themes_id;
 
-create view ingr_used as select distinct n.ingredients_id from needs n join (select distinct recipes_id from episode) as allrec on (n.recipes_id = allrec.recipes_id) order by n.ingredients_id ; 
-create view food_groups_used as select distinct food_groups_id from classify cl join ingr_used iu on (cl.ingredients_id=iu.ingredients_id) order by food_groups_id;
+create view ingr_used as 
+    select distinct n.ingredients_id 
+    from needs n 
+    join (select distinct recipes_id from episode) as allrec 
+    on (n.recipes_id = allrec.recipes_id) 
+    order by n.ingredients_id ; 
+create view food_groups_used as 
+    select distinct food_groups_id 
+    from classify cl 
+    join ingr_used iu 
+    on (cl.ingredients_id=iu.ingredients_id) 
+    order by food_groups_id;
 
 -- --------------------------------------------------------------------------------
 -- Triggers
