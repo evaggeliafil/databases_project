@@ -3078,35 +3078,134 @@ insert into score (cooks_id,season, episode_in_season,first_score,second_score,t
 insert into score (cooks_id,season, episode_in_season,first_score,second_score,third_score,total_score) value (22,5,10,4,1,3,8);
 insert into score (cooks_id,season, episode_in_season,first_score,second_score,third_score,total_score) value (56,5,10,1,5,1,7);
 
-CREATE TABLE IF NOT EXISTS nutritional_value (
-    recipes_id INT,
-    calories INT,
-    PRIMARY KEY (recipes_id)
-);
+-- Nutritional value
+insert into nutritional_value (recipes_id, calories)
+select
+first_occurrence.recipes_id,
+sum(ni.caloriespp * first_occurrence.portion) as total_calories
+from
+    (select
+	recipes_id,
+	min(steps_id) as first_steps_id,
+	max(portion) as portion  
+	from
+	consists_of
+	group by
+	recipes_id
+    ) as first_occurrence
+join
+nutritional_info ni
+on
+first_occurrence.recipes_id = ni.recipes_id
+group by
+first_occurrence.recipes_id;
 
--- Insert the total calories for each recipe's first occurrence into the nutritional_value table
-INSERT INTO nutritional_value (recipes_id, calories)
-SELECT 
-    first_occurrence.recipes_id,
-    SUM(ni.caloriespp * first_occurrence.portion) AS total_calories
-FROM 
-    (SELECT 
-        recipes_id, 
-        MIN(steps_id) AS first_steps_id,
-        MAX(portion) AS portion  -- Use MAX or MIN as needed since portion is the same for a given recipe-step pair
-     FROM 
-        consists_of
-     GROUP BY 
-        recipes_id
-    ) AS first_occurrence
-JOIN 
-    nutritional_info ni
-ON 
-    first_occurrence.recipes_id = ni.recipes_id
-GROUP BY 
-    first_occurrence.recipes_id;
--- ON DUPLICATE KEY UPDATE
-   -- calories = VALUES(calories);
+-- Pictures
+update recipes
+set recipes_picture = 'classic_cheeseburger.jpg',
+    recipes_caption = 'Juicy beef patty with melted cheese, lettuce, tomato, onion, and pickles on a toasted bun'
+where recipes_id = 1;
+
+update recipes
+set recipes_picture = 'macaroni_and_cheese.jpg',
+    recipes_caption = 'Creamy macaroni pasta baked until golden and bubbly, with cheddar and Parmesan cheese'
+where recipes_id = 2;
+
+update recipes
+set recipes_picture = 'barbecue_ribs.jpg',
+    recipes_caption = 'Tender pork ribs seasoned with a smoky barbecue rub, slow-cooked until fall-off-the-bone delicious'
+where recipes_id = 3;
+
+update recipes
+set recipes_picture = 'kunafa.jpg',
+    recipes_caption = 'Traditional Middle Eastern dessert with shredded filo dough and a creamy filling'
+where recipes_id = 4;
+
+update recipes
+set recipes_picture = 'manakeesh.jpg',
+    recipes_caption = 'Levantine flatbread topped with zaatar, cheese, or ground meat'
+where recipes_id = 5;
+
+update recipes
+set recipes_picture = 'shawarma.jpg',
+    recipes_caption = 'Marinated slices of meat grilled on a vertical rotisserie, served in a wrap or pita bread'
+where recipes_id = 6;
+
+update recipes
+set recipes_picture = 'milanesa.jpg',
+    recipes_caption = 'Thin slices of beef, chicken, or veal breaded and fried until golden and crispy'
+where recipes_id = 7;
+
+update recipes
+set recipes_picture = 'choripan.jpg',
+    recipes_caption = 'Grilled chorizo sausage served in a crusty bread roll with chimichurri sauce'
+where recipes_id = 8;
+
+update recipes
+set recipes_picture = 'alfajores.jpg',
+    recipes_caption = 'Butter cookies filled with dulce de leche and rolled in coconut flakes or covered in chocolate'
+where recipes_id = 9;
+
+update recipes
+set recipes_picture = 'tolma.jpg',
+    recipes_caption = 'Bell peppers or tomatoes stuffed with a savory mixture of rice, ground meat, onions, and spices'
+where recipes_id = 10;
+
+update recipes
+set recipes_picture = 'zhingyalov_hats.jpg',
+    recipes_caption = 'A flatbread stuffed with a variety of wild herbs and greens, griddled until golden and crispy'
+where recipes_id = 11;
+
+update recipes
+set recipes_picture = 'armenian_nutmeg_cake.jpg',
+    recipes_caption = 'A dense and moist cake flavored with nutmeg and studded with chopped nuts'
+where recipes_id = 12;
+
+update recipes
+set recipes_picture = 'fish_and_chips.jpg',
+    recipes_caption = 'Classic British dish consisting of battered and fried fish served with thick-cut fries'
+where recipes_id = 13;
+
+update recipes
+set recipes_picture = 'steak_and_kidney_pie.jpg',
+    recipes_caption = 'Traditional British dish made with diced beef and kidneys cooked in a rich gravy'
+where recipes_id = 14;
+
+update recipes
+set recipes_picture = 'toad_in_the_hole.jpg',
+    recipes_caption = 'Classic British dish featuring sausages baked in a Yorkshire pudding batter'
+where recipes_id = 15;
+
+update recipes
+set recipes_picture = 'molokhia.jpg',
+    recipes_caption = 'A nutritious stew made from chopped molokhia leaves cooked with garlic, coriander, and broth'
+where recipes_id = 16;
+
+update recipes
+set recipes_picture = 'hawawshi.jpg',
+    recipes_caption = 'Spiced minced meat mixed with onions and stuffed into pita bread, then grilled or baked'
+where recipes_id = 17;
+
+update recipes
+set recipes_picture = 'basbousa.jpg',
+    recipes_caption = 'A sweet semolina cake soaked in sugar syrup, topped with almonds or coconut flakes'
+where recipes_id = 18;
+
+update recipes
+set recipes_picture = 'croissant.jpg',
+    recipes_caption = 'Classic French pastry made with layers of buttery dough rolled and folded several times'
+where recipes_id = 19;
+
+update recipes
+set recipes_picture = 'quiche_lorraine.jpg',
+    recipes_caption = 'A savory French tart made with a buttery pastry crust filled with a rich custard mixture'
+where recipes_id = 20;
+
+update recipes
+set recipes_picture = 'creme_brulee.jpg',
+    recipes_caption = 'Classic French dessert consisting of a rich custard base topped with caramelized sugar'
+where recipes_id = 21;
+
 
 
 create view episode_scores as
