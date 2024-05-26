@@ -92,10 +92,7 @@ specializes = {
 }
 
 
-# Utility function to check participation constraints
-#def check_participation_count(participant, participant_type, episodes, max_count=3):
-    #count = sum(1 for episode in episodes if participant in episode[participant_type])
-    #return count < max_count
+
 
 def check_consecutive_episodes(participant, participant_type, episodes, max_consecutive=2):
     consecutive_count = 0
