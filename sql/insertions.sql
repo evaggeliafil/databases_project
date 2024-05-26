@@ -3206,6 +3206,201 @@ set recipes_picture = 'creme_brulee.jpg',
     recipes_caption = 'Classic French dessert consisting of a rich custard base topped with caramelized sugar'
 where recipes_id = 21;
 
+update recipes
+set recipes_picture = 'plokkfiskur.jpg',
+    recipes_caption = 'A traditional icelandic fish stew made with flaky white fish, potatoes, onions, and creamy béchamel sauce, often served with rye bread.'
+where recipes_id = 22;
+
+update recipes
+set recipes_picture = 'kjotsupa.jpg',
+    recipes_caption = 'A hearty icelandic lamb soup made with tender lamb meat, root vegetables, and barley, flavored with herbs and spices, served with bread and butter.'
+where recipes_id = 23;
+
+update recipes
+set recipes_picture = 'svidasulta.jpg',
+    recipes_caption = 'A traditional icelandic dish made from jellied sheep\'s head, served cold and typically eaten with rye bread and butter.'
+where recipes_id = 24;
+
+update recipes
+set recipes_picture = 'sauerbraten.jpg',
+    recipes_caption = 'A traditional german pot roast made with marinated beef, typically served with potato dumplings, red cabbage, and gravy.'
+where recipes_id = 25;
+
+update recipes
+set recipes_picture = 'wiener_schnitzel.jpg',
+    recipes_caption = 'Thin breaded and pan-fried veal cutlets, usually served with lemon wedges, lingonberry jam, and potato salad or fries.'
+where recipes_id = 26;
+
+update recipes
+set recipes_picture = 'black_forest_cake.jpg',
+    recipes_caption = 'A rich chocolate cake layered with whipped cream and cherries, soaked in cherry brandy (kirschwasser), and garnished with chocolate shavings.'
+where recipes_id = 27;
+
+update recipes
+set recipes_picture = 'moussaka.jpg',
+    recipes_caption = 'A classic greek casserole made with layers of eggplant, ground meat (usually lamb or beef), tomatoes, and béchamel sauce, baked until golden and bubbly.'
+where recipes_id = 28;
+
+update recipes
+set recipes_picture = 'souvlaki.jpg',
+    recipes_caption = 'Grilled skewers of marinated meat (usually pork, chicken, or lamb) served with pita bread, tzatziki sauce, and salad.'
+where recipes_id = 29;
+
+update recipes
+set recipes_picture = 'greek_salad.jpg',
+    recipes_caption = 'Greek salad is a refreshing and colorful dish made with crisp lettuce, tomatoes, cucumbers, red onions, olives, and feta cheese, dressed with olive oil, lemon juice, and oregano.'
+where recipes_id = 30;
+
+update recipes
+set recipes_picture = 'sushi_rolls.jpg',
+    recipes_caption = 'A variety of sushi rolls made with seasoned rice, nori (seaweed), and various fillings such as fish, vegetables, and avocado.'
+where recipes_id = 31;
+
+update recipes
+set recipes_picture = 'chicken_teriyaki.jpg',
+    recipes_caption = 'Grilled chicken marinated in a sweet and savory teriyaki sauce made from soy sauce, sake, mirin, and sugar, served with steamed rice and vegetables.'
+where recipes_id = 32;
+
+update recipes
+set recipes_picture = 'ramen.jpg',
+    recipes_caption = 'A hearty noodle soup made with wheat noodles, broth (usually pork or chicken), sliced pork belly, soft-boiled egg, and various toppings such as green onions and bamboo shoots.'
+where recipes_id = 33;
+
+update recipes
+set recipes_picture = 'chicken_tikka_masala.jpg',
+    recipes_caption = 'Tender pieces of chicken marinated in yogurt and spices, grilled or roasted, and then simmered in a creamy tomato sauce flavored with garam masala, served with rice or naan.'
+where recipes_id = 34;
+
+update recipes
+set recipes_picture = 'palak_paneer.jpg',
+    recipes_caption = 'A vegetarian dish made with cubes of paneer (indian cheese) cooked in a creamy spinach sauce flavored with garlic, ginger, and spices, served with rice or bread.'
+where recipes_id = 35;
+
+update recipes
+set recipes_picture = 'biryani.jpg',
+    recipes_caption = 'A fragrant rice dish cooked with basmati rice, meat (usually chicken, lamb, or goat), and aromatic spices such as saffron, cloves, and cardamom, typically served with raita (yogurt sauce).'
+where recipes_id = 36;
+
+update recipes
+set recipes_picture = 'falafel.jpg',
+    recipes_caption = 'Deep-fried balls made from ground chickpeas, onions, herbs, and spices, typically served in pita bread with salad, hummus, and tahini sauce.'
+where recipes_id = 37;
+
+update recipes
+set recipes_picture = 'hummus.jpg',
+    recipes_caption = 'A creamy dip made from mashed chickpeas, tahini (sesame paste), lemon juice, garlic, and olive oil, often garnished with paprika and parsley, served with bread or vegetables.'
+where recipes_id = 38;
+
+update recipes
+set recipes_picture = 'kibbeh.jpg',
+    recipes_caption = 'A traditional levantine dish made with bulgur wheat, minced onions, and ground meat (usually lamb or beef), shaped into balls or patties, and deep-fried until crispy.'
+where recipes_id = 39;
+
+update recipes
+set recipes_picture = 'suya.jpg',
+    recipes_caption = 'Spicy skewered and grilled meat (usually beef, chicken, or goat) seasoned with a flavorful blend of spices and ground peanuts, served with sliced onions and tomatoes.'
+where recipes_id = 40;
+
+update recipes
+set recipes_picture = 'akara.jpg',
+    recipes_caption = 'Deep-fried bean cakes made from peeled black-eyed peas blended with onions, peppers, and spices, often served as a snack or breakfast.'
+where recipes_id = 41;
+
+update recipes
+set recipes_picture = 'chin_chin.jpg',
+    recipes_caption = 'A crunchy fried snack made from a dough of flour, sugar, milk, and butter, cut into small squares or shapes, and deep-fried until golden brown and crispy.'
+where recipes_id = 42;
+
+update recipes
+set recipes_picture = 'paella.jpg',
+    recipes_caption = 'A classic spanish rice dish made with saffron-infused rice, seafood (such as shrimp, mussels, and clams), chicken, chorizo, and vegetables, cooked in a wide, shallow pan.'
+where recipes_id = 43;
+
+update recipes
+set recipes_picture = 'patatas_bravas.jpg',
+    recipes_caption = 'Crispy fried potatoes served with a spicy tomato sauce (brava sauce) and aioli (garlic mayonnaise), a popular spanish tapa.'
+where recipes_id = 44;
+
+update recipes
+set recipes_picture = 'churros_con_chocolate.jpg',
+    recipes_caption = 'Deep-fried dough pastries dusted with sugar and cinnamon, served with a thick and rich hot chocolate sauce for dipping.'
+where recipes_id = 45;
+
+update recipes
+set recipes_picture = 'lasagna.jpg',
+    recipes_caption = 'A classic italian pasta dish made with layers of lasagna noodles, bolognese sauce (meat sauce), béchamel sauce, and cheese, baked until golden and bubbly.'
+where recipes_id = 46;
+
+update recipes
+set recipes_picture = 'margherita_pizza.jpg',
+    recipes_caption = 'A simple yet delicious pizza topped with tomato sauce, fresh mozzarella cheese, basil leaves, and a drizzle of olive oil, baked in a wood-fired oven.'
+where recipes_id = 47;
+
+update recipes
+set recipes_picture = 'caprese_salad.jpg',
+    recipes_caption = 'A simple italian salad made with ripe tomatoes, fresh mozzarella cheese, basil leaves, olive oil, balsamic vinegar, salt, and pepper, served as a starter or side dish.'
+where recipes_id = 48;
+
+update recipes
+set recipes_picture = 'kung_pao_chicken.jpg',
+    recipes_caption = 'A spicy stir-fry dish made with diced chicken, peanuts, vegetables, and chili peppers, flavored with soy sauce, hoisin sauce, and sichuan peppercorns.'
+where recipes_id = 49;
+
+update recipes
+set recipes_picture = 'mapo_tofu.jpg',
+    recipes_caption = 'A popular chinese dish made with soft tofu cubes, minced meat (usually pork or beef), fermented black beans, garlic, ginger, and chili peppers, served with steamed rice.'
+where recipes_id = 50;
+
+update recipes
+set recipes_picture = 'beijing_duck.jpg',
+    recipes_caption = 'A famous chinese dish made with crispy roasted duck served with thin pancakes, hoisin sauce, sliced cucumbers, and green onions, often enjoyed as a festive meal.'
+where recipes_id = 51;
+
+update recipes
+set recipes_picture = 'tacos_al_pastor.jpg',
+    recipes_caption = 'Tender pork marinated in a blend of spices, chilies, and pineapple, roasted on a vertical spit (trompo), thinly sliced, and served in corn tortillas with onions, cilantro, and salsa.'
+where recipes_id = 52;
+
+update recipes
+set recipes_picture = 'guacamole.jpg',
+    recipes_caption = 'A creamy dip made from mashed avocados, lime juice, onions, tomatoes, cilantro, and salt, often served with tortilla chips or as a topping for tacos, burritos, and salads.'
+where recipes_id = 53;
+
+update recipes
+set recipes_picture = 'mole_poblano.jpg',
+    recipes_caption = 'A rich and complex sauce made from dried chilies, chocolate, nuts, seeds, spices, and other ingredients, served over chicken or turkey and accompanied by rice and tortillas.'
+where recipes_id = 54;
+
+update recipes
+set recipes_picture = 'pad_thai.jpg',
+    recipes_caption = 'A popular thai stir-fried noodle dish made with rice noodles, shrimp or chicken, eggs, tofu, bean sprouts, peanuts, and a tangy tamarind sauce, garnished with lime wedges and fresh herbs.'
+where recipes_id = 55;
+
+update recipes
+set recipes_picture = 'green_curry.jpg',
+    recipes_caption = 'A fragrant and spicy thai curry made with green curry paste, coconut milk, chicken or tofu, bamboo shoots, thai eggplants, and basil, served with steamed jasmine rice.'
+where recipes_id = 56;
+
+update recipes
+set recipes_picture = 'mango_sticky_rice.jpg',
+    recipes_caption = 'A popular thai dessert made with glutinous rice cooked in coconut milk, served with ripe mango slices and drizzled with a sweet coconut sauce.'
+where recipes_id = 57;
+
+update recipes set 
+    recipes_picture = 'baklava.jpg', 
+    recipes_caption = 'A traditional turkish dessert made with layers of filo pastry, nuts, and syrup.' 
+where recipes_id = 58;
+
+update recipes set 
+    recipes_picture = 'simit.jpg', 
+    recipes_caption = 'A popular turkish bread with a chewy texture, topped with sesame seeds.' 
+where recipes_id = 59;
+
+update recipes set 
+    recipes_picture = 'pide.jpg', 
+    recipes_caption = 'Pide is a turkish flatbread that is typically topped with various ingredients such as cheese, meat, or vegetables.' 
+where recipes_id = 60;
+
 
 
 create view episode_scores as
