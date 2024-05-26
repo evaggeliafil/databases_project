@@ -1,4 +1,4 @@
--- 3.1 --changed
+-- 3.1 
 
 select cooks.cooks_id,cooks.cooks_name,cooks.cooks_surname,cooks_rating.average_score 
  from cooks 
@@ -121,9 +121,12 @@ select cy.cuisines_id,c.cuisines_name,cy.year1,cy.year2,cy.entries_count1 as ent
 
 -- 3.11
 
-select j.cooks_name as judge_name, j.cooks_surname as judge_surname,c.cooks_name as cook_name, c.cooks_surname as cook_surname, tsbj.total_score from total_score_by_judge tsbj
-join cooks j on(j.cooks_id=tsbj.judges_id)
-join cooks c on (c.cooks_id=tsbj.cooks_id);
+select j.cooks_name as judge_name, j.cooks_surname as judge_surname,c.cooks_name as cook_name, c.cooks_surname as cook_surname, tsbj.total_score 
+ from total_score_by_judge tsbj
+join cooks j 
+ on(j.cooks_id=tsbj.judges_id)
+join cooks c 
+ on (c.cooks_id=tsbj.cooks_id);
 
 
 
@@ -148,7 +151,9 @@ order by ed.season, ed.eis;
 
 -- 3.13 
 
-select er.season, er.episode_in_season,er.total_rank from episode_rank er order by er.total_rank asc limit 1;
+select er.season, er.episode_in_season,er.total_rank 
+ from episode_rank er 
+ order by er.total_rank asc limit 1;
 
 
 -- 3.14
@@ -162,6 +167,10 @@ limit 1;
 
 -- 3.15 
 
-select fg.food_groups_id, fg.food_groups_name from food_groups fg left join food_groups_used fgu on (fg.food_groups_id=fgu.food_groups_id) where (fgu.food_groups_id is null);
+select fg.food_groups_id, fg.food_groups_name 
+ from food_groups fg 
+ left join food_groups_used fgu 
+ on (fg.food_groups_id=fgu.food_groups_id) 
+ where (fgu.food_groups_id is null);
 
 
