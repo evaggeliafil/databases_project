@@ -75,6 +75,40 @@ select x.cooks_id,ck.cooks_name,ck.cooks_surname, x.season, x.times
  on (x.cooks_id=ck.cooks_id) 
  order by x.season;
 
+-- query plan
+create index idx_categorized_by_recipes_id on categorized_by (recipes_id);
+create index idx_categorized_by_tags_id on categorized_by (tags_id);
+create index idx_episode_recipes_recipes_id on episode (recipes_id);
+
+select cb1.tags_id as tag1, cb2.tags_id as tag2, count(*) as pair_count
+from episode er
+force index (idx_episode_recipes_recipes_id)
+join categorized_by cb1 force index (idx_categorized_by_recipes_id) on er.recipes_id = cb1.recipes_id
+join categorized_by cb2 force index (idx_categorized_by_recipes_id) on er.recipes_id = cb2.recipes_id
+where cb1.tags_id < cb2.tags_id
+group by cb1.tags_id, cb2.tags_id
+order by pair_count desc
+limit 3;
+
+explain select cb1.tags_id as tag1,cb2.tags_id as tag2,count(*) as pair_count
+from episode er
+join categorized_by cb1 on er.recipes_id = cb1.recipes_id
+join categorized_by cb2 on er.recipes_id = cb2.recipes_id
+where cb1.tags_id < cb2.tags_id
+group by cb1.tags_id, cb2.tags_id
+order by pair_count desc
+limit 3;
+
+explain select cb1.tags_id as tag1,cb2.tags_id as tag2,count(*) as pair_count
+from episode er
+force index (idx_episode_recipes_recipes_id)
+join categorized_by cb1 force index (idx_categorized_by_recipes_id) on er.recipes_id = cb1.recipes_id
+join categorized_by cb2 force index (idx_categorized_by_recipes_id) on er.recipes_id = cb2.recipes_id
+where cb1.tags_id < cb2.tags_id
+group by cb1.tags_id, cb2.tags_id
+order by pair_count desc
+limit 3;
+
 -- 3.6 
 
 select t1.tags_id as tag1_id,t1.tags_name as tag1_name,t2.tags_id as tag2_id,t2.tags_name as tag2_name, tp.pair_count  
